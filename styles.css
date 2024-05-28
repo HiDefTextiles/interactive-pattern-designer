@@ -7,6 +7,35 @@ body {
     margin-bottom: 20px;
 }
 
+#color-controls {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.color-picker {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.color-label {
+    display: flex;
+    align-items: center;
+    margin: 0 10px;
+    cursor: pointer;
+    padding: 5px;
+    border: 2px solid transparent;
+}
+
+.color-label.selected {
+    border-color: black;
+}
+
+.color-label input[type="color"] {
+    margin-left: 10px;
+}
+
 #grid-container {
     display: inline-block;
     position: relative;
@@ -37,20 +66,4 @@ body {
 
 .cell.na {
     background-color: white;
-}
-
-.cell.red {
-    background-color: red;
-}
-
-.cell.green {
-    background-color: green;
-}
-
-.cell.blue {
-    background-color: blue;
-}
-
-.cell.yellow {
-    background-color: yellow;
 }

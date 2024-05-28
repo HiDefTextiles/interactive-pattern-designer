@@ -1,64 +1,64 @@
-// Color Handling Functions
+let selectedColor = 0; // Declare and initialize selectedColor
 
 function getColorClass(colorValue) {
-    switch (colorValue) {
-        case '1':
-            return 'red';
-        case '2':
-            return 'green';
-        case '3':
-            return 'blue';
-        case '4':
-            return 'yellow';
-        default:
-            return 'na';
-    }
-}
-
-function getColorValue(colorClass) {
-    switch (colorClass) {
-        case 'red':
-            return 1;
-        case 'green':
-            return 2;
-        case 'blue':
-            return 3;
-        case 'yellow':
-            return 4;
-        default:
-            return 0;
-    }
+    const colorPicker = document.getElementById(`color${colorValue}`);
+    return colorPicker ? colorPicker.value : '#ffffff';
 }
 
 function colorCell(cell) {
-    const colorValue = document.getElementById('color').value;
-    const newColorClass = getColorClass(colorValue);
-    const currentColorClass = cell.className.split(' ')[1];
+    const currentColorId = parseInt(cell.getAttribute('data-color-id'));
+    const newColorId = selectedColor;
 
-    cell.className = currentColorClass === newColorClass ? 'cell na' : `cell ${newColorClass}`;
-    updateEncodedOutput();
-}
-
-function colorRow(rowIndex) {
-    const colorValue = document.getElementById('color').value;
-    const rows = document.getElementsByClassName('row');
-    const cells = rows[rowIndex].getElementsByClassName('cell');
-
-    for (let cell of cells) {
-        cell.className = `cell ${getColorClass(colorValue)}`;
+    if (currentColorId === newColorId) {
+        cell.setAttribute('data-color-id', 0); // Revert to color-0
+        cell.style.backgroundColor = getColorClass(0);
+    } else {
+        cell.setAttribute('data-color-id', newColorId);
+        cell.style.backgroundColor = getColorClass(newColorId);
     }
 
     updateEncodedOutput();
 }
 
-function colorColumn(colIndex) {
-    const colorValue = document.getElementById('color').value;
-    const rows = document.getElementsByClassName('row');
+function updateGridColors(event) {
+    const colorPickerId = event.target.id;
+    const colorValue = parseInt(colorPickerId.replace('color', ''));
+    const newColorClass = event.target.value;
 
+    const rows = document.getElementsByClassName('row');
     for (let row of rows) {
         const cells = row.getElementsByClassName('cell');
-        cells[colIndex].className = `cell ${getColorClass(colorValue)}`;
+        for (let cell of cells) {
+            const cellColorId = parseInt(cell.getAttribute('data-color-id'));
+            if (cellColorId === colorValue) {
+                cell.style.backgroundColor = newColorClass;
+            }
+        }
     }
 
     updateEncodedOutput();
 }
+
+function initColorPickers() {
+    const colorLabels = document.querySelectorAll('.color-label');
+    colorLabels.forEach(label => {
+        label.addEventListener('click', function() {
+            selectedColor = parseInt(this.htmlFor.replace('color', ''));
+            colorLabels.forEach(l => l.classList.remove('selected'));
+            this.classList.add('selected');
+        });
+    });
+
+    const colorPickers = document.querySelectorAll('input[type="color"]');
+    colorPickers.forEach(picker => {
+        picker.addEventListener('input', updateGridColors);
+    });
+
+    // Explicitly select the initial color (Color 0)
+    document.getElementById('label-color0').classList.add('selected');
+}
+
+window.onload = () => {
+    createGrid();
+    initColorPickers();
+};

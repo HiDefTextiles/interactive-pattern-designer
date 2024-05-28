@@ -14,15 +14,14 @@
         <label for="cols">Columns:</label>
         <input type="number" id="cols" value="10" min="1">
         <button onclick="createGrid()">Create Grid</button>
-        <label for="color">Color:</label>
-        <select id="color">
-            <option value="0">NA</option>
-            <option value="1">Red</option>
-            <option value="2">Green</option>
-            <option value="3">Blue</option>
-            <option value="4">Yellow</option>
-        </select>
         <button onclick="clearGrid()">Clear Grid</button>
+        <div class="color-picker">
+            <label for="color0" class="color-label" id="label-color0">Color 0 <input type="color" id="color0" value="#ffffff"></label>
+            <label for="color1" class="color-label" id="label-color1">Color 1 <input type="color" id="color1" value="#ff0000"></label>
+            <label for="color2" class="color-label" id="label-color2">Color 2 <input type="color" id="color2" value="#00ff00"></label>
+            <label for="color3" class="color-label" id="label-color3">Color 3 <input type="color" id="color3" value="#0000ff"></label>
+            <label for="color4" class="color-label" id="label-color4">Color 4 <input type="color" id="color4" value="#ffff00"></label>
+        </div>
     </div>
     <div id="grid-container">
         <div id="grid"></div>
@@ -32,7 +31,10 @@
     <script src="js/color.js"></script>
     <script src="js/grid.js"></script>
     <script>
-        window.onload = createGrid;
+        window.onload = () => {
+            createGrid();
+            initColorPickers();
+        };
     </script>
 </body>
 </html>
