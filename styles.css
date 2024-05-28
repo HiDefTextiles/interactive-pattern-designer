@@ -1,0 +1,44 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+#controls {
+    margin-bottom: 20px;
+}
+
+#grid {
+    display: inline-block;
+    margin: 20px auto;
+}
+
+.row {
+    display: flex;
+}
+
+.cell {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #000;
+    cursor: pointer;
+}
+
+.cell.na {
+    background-color: white;
+}
+
+.cell.red {
+    background-color: red;
+}
+
+.cell.green {
+    background-color: green;
+}
+
+.cell.blue {
+    background-color: blue;
+}
+
+.cell.yellow {
+    background-color: yellow;
+}
