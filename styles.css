@@ -7,20 +7,32 @@ body {
     margin-bottom: 20px;
 }
 
+#grid-container {
+    display: inline-block;
+    position: relative;
+}
+
 #grid {
     display: inline-block;
     margin: 20px auto;
 }
 
-.row {
+.row, .header-row {
     display: flex;
 }
 
-.cell {
+.header-cell, .cell {
     width: 30px;
     height: 30px;
     border: 1px solid #000;
     cursor: pointer;
+}
+
+.header-cell {
+    background-color: #f0f0f0;
+    text-align: center;
+    line-height: 30px;
+    font-weight: bold;
 }
 
 .cell.na {
