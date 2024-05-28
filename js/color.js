@@ -1,4 +1,4 @@
-let selectedColor = 0; // Declare and initialize selectedColor
+let selectedColor = 0;
 
 function getColorClass(colorValue) {
     const colorPicker = document.getElementById(`color${colorValue}`);
@@ -15,6 +15,34 @@ function colorCell(cell) {
     } else {
         cell.setAttribute('data-color-id', newColorId);
         cell.style.backgroundColor = getColorClass(newColorId);
+    }
+
+    updateEncodedOutput();
+}
+
+function colorRow(rowIndex) {
+    const rows = document.getElementsByClassName('row');
+    const cells = rows[rowIndex].getElementsByClassName('cell');
+
+    const newColorClass = getColorClass(selectedColor);
+    const newColorId = selectedColor;
+    for (let cell of cells) {
+        cell.style.backgroundColor = newColorClass;
+        cell.setAttribute('data-color-id', newColorId);
+    }
+
+    updateEncodedOutput();
+}
+
+function colorColumn(colIndex) {
+    const rows = document.getElementsByClassName('row');
+    const newColorClass = getColorClass(selectedColor);
+    const newColorId = selectedColor;
+
+    for (let row of rows) {
+        const cells = row.getElementsByClassName('cell');
+        cells[colIndex].style.backgroundColor = newColorClass;
+        cells[colIndex].setAttribute('data-color-id', newColorId);
     }
 
     updateEncodedOutput();
