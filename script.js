@@ -42,7 +42,15 @@ function createGrid() {
 
 function colorCell(cell) {
     const colorValue = document.getElementById('color').value;
-    cell.className = 'cell ' + getColorClass(colorValue);
+    const currentColorClass = getColorClass(colorValue);
+    const currentCellColorClass = cell.className.split(' ')[1];
+
+    if (currentCellColorClass === currentColorClass) {
+        cell.className = 'cell na';
+    } else {
+        cell.className = 'cell ' + currentColorClass;
+    }
+
     updateEncodedOutput();
 }
 
@@ -70,11 +78,16 @@ function colorColumn(colIndex) {
 
 function getColorClass(colorValue) {
     switch (colorValue) {
-        case '1': return 'red';
-        case '2': return 'green';
-        case '3': return 'blue';
-        case '4': return 'yellow';
-        default: return 'na';
+        case '1':
+            return 'red';
+        case '2':
+            return 'green';
+        case '3':
+            return 'blue';
+        case '4':
+            return 'yellow';
+        default:
+            return 'na';
     }
 }
 
@@ -109,11 +122,16 @@ function updateEncodedOutput() {
 
 function getColorValue(colorClass) {
     switch (colorClass) {
-        case 'red': return 1;
-        case 'green': return 2;
-        case 'blue': return 3;
-        case 'yellow': return 4;
-        default: return 0;
+        case 'red':
+            return 1;
+        case 'green':
+            return 2;
+        case 'blue':
+            return 3;
+        case 'yellow':
+            return 4;
+        default:
+            return 0;
     }
 }
 
