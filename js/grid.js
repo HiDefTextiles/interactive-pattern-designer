@@ -4,7 +4,6 @@ function createGrid() {
     const newCols = parseInt(document.getElementById('cols').value);
 
     const existingRows = gridContainer.getElementsByClassName('row').length;
-    const existingCols = existingRows > 0 ? gridContainer.getElementsByClassName('row')[0].getElementsByClassName('cell').length - 1 : 0;
 
     // Adjust columns in the header row
     const headerRow = gridContainer.querySelector('.header-row');
@@ -15,10 +14,14 @@ function createGrid() {
     }
 
     // Adjust rows and columns
-    adjustGridRows(gridContainer, newRows, newCols, existingRows, existingCols);
+    adjustGridRows(gridContainer, newRows, newCols, existingRows);
+
+    // Update pattern info
+    document.getElementById('pattern-info').textContent = `Pattern: ${newRows} x ${newCols}`;
 
     updateEncodedOutput();
 }
+
 
 function adjustHeaderRow(headerRow, newCols) {
     const existingCols = headerRow.children.length - 1;
@@ -53,10 +56,10 @@ function createHeaderRow(gridContainer, newCols) {
     gridContainer.appendChild(headerRow);
 }
 
-function adjustGridRows(gridContainer, newRows, newCols, existingRows, existingCols) {
+function adjustGridRows(gridContainer, newRows, newCols, existingRows) {
     for (let r = 0; r < newRows; r++) {
         if (r < existingRows) {
-            adjustRow(gridContainer.getElementsByClassName('row')[r], newCols, existingCols);
+            adjustRow(gridContainer.getElementsByClassName('row')[r], newCols);
         } else {
             createRow(gridContainer, r, newCols);
         }
@@ -70,7 +73,7 @@ function adjustGridRows(gridContainer, newRows, newCols, existingRows, existingC
     }
 }
 
-function adjustRow(row, newCols, existingCols) {
+function adjustRow(row, newCols) {
     const existingCells = row.getElementsByClassName('cell').length;
     if (newCols > existingCells) {
         for (let c = existingCells; c < newCols; c++) {
@@ -102,7 +105,10 @@ function createRow(gridContainer, rowIndex, cols) {
         cell.style.backgroundColor = getColorClass(0);
         cell.setAttribute('data-color-id', 0);
         cell.addEventListener('click', () => colorCell(cell));
+        cell.addEventListener('mouseover', () => updateHoverInfo(rowIndex + 1, c + 1, cell));
+        cell.addEventListener('mouseout', () => updateHoverInfo(-1, -1, null));
         row.appendChild(cell);
     }
     gridContainer.appendChild(row);
 }
+

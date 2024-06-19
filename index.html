@@ -7,34 +7,40 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Interactive Pattern Designer</h1>
-    <div id="controls">
-        <label for="rows">Rows:</label>
-        <input type="number" id="rows" value="10" min="1">
-        <label for="cols">Columns:</label>
-        <input type="number" id="cols" value="10" min="1">
-        <button onclick="createGrid()">Create Grid</button>
-        <button onclick="clearGrid()">Clear Grid</button>
-        <div class="color-picker">
-            <label for="color0" class="color-label" id="label-color0">Color 0 <input type="color" id="color0" value="#ffffff"></label>
-            <label for="color1" class="color-label" id="label-color1">Color 1 <input type="color" id="color1" value="#ff0000"></label>
-            <label for="color2" class="color-label" id="label-color2">Color 2 <input type="color" id="color2" value="#00ff00"></label>
-            <label for="color3" class="color-label" id="label-color3">Color 3 <input type="color" id="color3" value="#0000ff"></label>
-            <label for="color4" class="color-label" id="label-color4">Color 4 <input type="color" id="color4" value="#ffff00"></label>
-        </div>
+<h1>Interactive Pattern Designer</h1>
+<div id="controls">
+    <label for="rows">Rows:</label>
+    <input type="number" id="rows" value="10" min="1">
+    <label for="cols">Columns:</label>
+    <input type="number" id="cols" value="10" min="1">
+    <button onclick="createGrid()">Create Grid</button>
+    <button onclick="clearGrid()">Clear Grid</button>
+    <div class="color-picker">
+        <label for="color0" class="color-label" id="label-color0">Color 0 <input type="color" id="color0" value="#ffffff"></label>
+        <label for="color1" class="color-label" id="label-color1">Color 1 <input type="color" id="color1" value="#ff0000"></label>
+        <label for="color2" class="color-label" id="label-color2">Color 2 <input type="color" id="color2" value="#00ff00"></label>
+        <label for="color3" class="color-label" id="label-color3">Color 3 <input type="color" id="color3" value="#0000ff"></label>
+        <label for="color4" class="color-label" id="label-color4">Color 4 <input type="color" id="color4" value="#ffff00"></label>
     </div>
-    <div id="grid-container">
-        <div id="grid"></div>
-    </div>
-    <pre id="encodedOutput"></pre>
-    <script src="js/utils.js"></script>
-    <script src="js/color.js"></script>
-    <script src="js/grid.js"></script>
-    <script>
-        window.onload = () => {
-            createGrid();
-            initColorPickers();
-        };
-    </script>
+</div>
+<div id="info-bar">
+    <div id="hover-info">(Row, Col): None</div>
+    <div id="selected-color-info">Selected Color: None</div>
+    <div id="pattern-info">Pattern: Rows x Columns</div>
+    <div id="zoom-info">Zoom Factor: 1</div>
+</div>
+<div id="grid-container">
+    <div id="grid"></div>
+</div>
+<pre id="encodedOutput"></pre>
+<script src="js/utils.js"></script>
+<script src="js/color.js"></script>
+<script src="js/grid.js"></script>
+<script>
+    window.onload = () => {
+        createGrid();
+        initColorPickers();
+    };
+</script>
 </body>
 </html>

@@ -1,21 +1,36 @@
 // Utility functions for the web app
 
+function updateHoverInfo(row, col, cell) {
+    const hoverInfo = document.getElementById('hover-info');
+    if (row === -1 || col === -1) {
+        hoverInfo.textContent = '(Row, Col): Color';
+    } else {
+        const colorId = cell.getAttribute('data-color-id');
+        const colorName = getColorName(colorId);
+        hoverInfo.textContent = `(${row}, ${col}) - ${colorName}`;
+    }
+}
+
+function getColorName(colorId) {
+    const colorPicker = document.getElementById(`color${colorId}`);
+    if (colorPicker) {
+        return colorPicker.labels[0].textContent;
+    }
+    return 'None';
+}
 
 function updateEncodedOutput() {
-    // Encode the grid data into a string using run-length encoding, first the color id then the
-    // count of consecutive cells with that color id. Each row is separated by a newline character.
-
     const gridContainer = document.getElementById('grid');
     const rows = gridContainer.getElementsByClassName('row');
     let encodedOutput = '';
 
-    for (let i = 0; i < rows.length; i++) { // Start at 0 since headers are not included in rows
+    for (let i = 0; i < rows.length; i++) {
         const row = rows[i];
-        let currentColorId = row.children[1].getAttribute('data-color-id'); // Offset by 1 for header cell
+        let currentColorId = row.children[1].getAttribute('data-color-id');
         let count = 0;
         let encodedRow = [];
 
-        for (let j = 1; j < row.children.length; j++) { // Start at 1 to skip header cell
+        for (let j = 1; j < row.children.length; j++) {
             const cell = row.children[j];
             const colorId = cell.getAttribute('data-color-id');
             if (colorId === currentColorId) {
@@ -32,6 +47,7 @@ function updateEncodedOutput() {
 
     document.getElementById('encodedOutput').textContent = encodedOutput;
 }
+
 
 function clearGrid() {
     const rows = document.getElementsByClassName('row');
