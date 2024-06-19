@@ -4,6 +4,7 @@ function createGrid() {
     const newCols = parseInt(document.getElementById('cols').value);
 
     const existingRows = gridContainer.getElementsByClassName('row').length;
+    const zoomFactor = parseInt(document.getElementById('zoomFactor').value);
 
     // Adjust columns in the header row
     const headerRow = gridContainer.querySelector('.header-row');
@@ -18,8 +19,8 @@ function createGrid() {
 
     // Update pattern info
     document.getElementById('pattern-info').textContent = `Pattern: ${newRows} x ${newCols}`;
+    document.getElementById('zoom-info').textContent = `Zoom: ${zoomFactor}`;
 
-    updateEncodedOutput();
 }
 
 

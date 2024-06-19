@@ -52,18 +52,34 @@ button {
     margin-left: 10px;
 }
 
-#info-bar {
+.banner {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: #f9f9f9;
     display: flex;
     justify-content: space-around;
-    margin: 20px auto;
-    padding: 10px;
-    border: 1px solid #ddd;
-    background-color: #f9f9f9;
+    width: 100%;
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
 }
 
-#info-bar div {
+.banner div {
     flex: 1;
     text-align: center;
+}
+
+.banner-output {
+    font-size: 0.8em; /* Smaller font size */
+}
+
+#imageContainer {
+    display: none;
+}
+
+#imageCanvas {
+    margin: auto;
+    display: block;
+    border: 1px solid #ddd;
 }
 
 #grid-container {
@@ -100,4 +116,25 @@ button {
 
 .cell.pattern-cell {
     border-color: black; /* Black border for pattern cells */
+}
+
+#output-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+#output-controls label {
+    margin-right: 10px;
+}
+
+#output-controls select {
+    margin-right: 10px;
+    padding: 5px;
+}
+
+#encodedOutput {
+    white-space: pre-wrap;
+    min-height: 200px;
 }

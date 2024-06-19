@@ -12,7 +12,9 @@
     <label for="rows">Rows:</label>
     <input type="number" id="rows" value="10" min="1">
     <label for="cols">Columns:</label>
-    <input type="number" id="cols" value="10" min="1">
+    <input type="number" id="cols" value="15" min="1" max="180">
+    <label for="zoomFactor">Zoom:</label>
+    <input type="number" id="zoomFactor" value="10" min="1" max="100" step="1">
     <button onclick="createGrid()">Create Grid</button>
     <button onclick="clearGrid()">Clear Grid</button>
     <div class="color-picker">
@@ -23,16 +25,30 @@
         <label for="color4" class="color-label" id="label-color4">Color 4 <input type="color" id="color4" value="#ffff00"></label>
     </div>
 </div>
-<div id="info-bar">
+<div id="info-bar" class="banner banner-info">
     <div id="hover-info">(Row, Col): None</div>
-    <div id="selected-color-info">Selected Color: None</div>
+    <div id="selected-color-info">Selected: None</div>
     <div id="pattern-info">Pattern: Rows x Columns</div>
     <div id="zoom-info">Zoom Factor: 1</div>
 </div>
 <div id="grid-container">
     <div id="grid"></div>
 </div>
-<pre id="encodedOutput"></pre>
+<div id="output-controls">
+    <label for="output-format">Output Format:</label>
+    <select id="output-format">
+        <option value="matrix">Matrix</option>
+        <option value="rle">Run-Length Encoding</option>
+        <option value="json">JSON</option>
+        <option value="png">PNG Image</option>
+    </select>
+    <button onclick="renderOutput()">Render Output</button>
+    <button onclick="copyOutput()">Copy Output</button>
+</div>
+<div id="encodedOutput" class="banner banner-output"></div>
+<div id="imageContainer" class="banner banner-output">
+    <canvas id="imageCanvas"></canvas>
+</div>
 <script src="js/utils.js"></script>
 <script src="js/color.js"></script>
 <script src="js/grid.js"></script>

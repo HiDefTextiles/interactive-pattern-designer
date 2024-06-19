@@ -16,8 +16,6 @@ function colorCell(cell) {
         cell.setAttribute('data-color-id', newColorId);
         cell.style.backgroundColor = getColorClass(newColorId);
     }
-
-    updateEncodedOutput();
 }
 
 function colorRow(rowIndex) {
@@ -29,8 +27,6 @@ function colorRow(rowIndex) {
         cell.style.backgroundColor = newColorClass;
         cell.setAttribute('data-color-id', selectedColor);
     }
-
-    updateEncodedOutput();
 }
 
 function colorColumn(colIndex) {
@@ -41,8 +37,6 @@ function colorColumn(colIndex) {
         cells[colIndex].style.backgroundColor = newColorClass;
         cells[colIndex].setAttribute('data-color-id', selectedColor);
     }
-
-    updateEncodedOutput();
 }
 
 function updateGridColors(event) {
@@ -60,8 +54,6 @@ function updateGridColors(event) {
             }
         }
     }
-
-    updateEncodedOutput();
 }
 
 function initColorPickers() {
@@ -71,7 +63,7 @@ function initColorPickers() {
             selectedColor = parseInt(this.htmlFor.replace('color', ''));
             colorLabels.forEach(l => l.classList.remove('selected'));
             this.classList.add('selected');
-            document.getElementById('selected-color-info').textContent = `Selected Color: ${getColorName(selectedColor)}`;
+            document.getElementById('selected-color-info').textContent = `Selected: ${getColorName(selectedColor)}`;
         });
     });
 
@@ -82,10 +74,5 @@ function initColorPickers() {
 
     // Explicitly select the initial color (Color 0)
     document.getElementById(`label-color${selectedColor}`).classList.add('selected');
-    document.getElementById('selected-color-info').textContent = `Selected Color: ${getColorName(selectedColor)}`;
+    document.getElementById('selected-color-info').textContent = `Selected: ${getColorName(selectedColor)}`;
 }
-
-window.onload = () => {
-    createGrid();
-    initColorPickers();
-};
